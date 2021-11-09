@@ -14,7 +14,7 @@
       <div class="col-lg-6">
       </div>
       <div class="col-lg-12 credits">
-        Azure RedHat Openshift FTW!
+        Azure RedHat Openshift FTW
       </div>
       <div class="col-lg-6">
       </div>
