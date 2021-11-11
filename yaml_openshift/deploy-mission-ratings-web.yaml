@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mission-ratings-web
+  name: mission-ratings-web
+  namespace: rating-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: mission-ratings-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        deployment: mission-ratings-web
+    spec:
+      containers:
+      - env:
+        - name: strategy
+          value: source
+        - name: API
+          value: http://mission-ratings-api:3000
+        image: image-registry.openshift-image-registry.svc:5000/rating-app/mission-ratings-web@sha256:83380b5293fc51b5eae598246c45f6af1a5b435ac552db9785f948b34072c5c3
+        imagePullPolicy: IfNotPresent
+        name: mission-ratings-web
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+---
